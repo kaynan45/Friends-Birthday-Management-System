@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7 days of code</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <script src="script.js"></script>
+    <h1>People registration</h1>
+    <form class="form js-form">
+        <label for="name">
+            Name
+            <input class="form-field js-field js-name-field" id="name" maxlength="120" name="name" required type="text"
+                placeholder="Type your name">
+        </label>
+        <label for="birth-date">
+            Birth-date
+            <input class="form-field js-field js-birth-field" id="birth-date" name="birth-date" required type="date">
+        </label>
+        <button type="submit" class="js-save-button">Save</button>
+    </form>
+    <div class="data-area"></div>
 </body>
+<script src="script.js"></script>
+
 </html>
