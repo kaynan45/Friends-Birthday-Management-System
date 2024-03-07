@@ -3,6 +3,17 @@ const birthInput = document.querySelector(".js-birth-field");
 const saveButton = document.querySelector(".js-save-button");
 const myForm = document.querySelector(".js-form");
 
+//This /\d/ is a regular expression that checks if the input contains any digit (number).
+//The .test() method returns a Boolean value that indicates whether or not a pattern exists in a searched string. In this case, if the string contains a number, it'll be true, otherwise, false.
+nameInput.addEventListener('input', () => {
+
+    if(/\d/.test(nameInput.value)) {
+        nameInput.setCustomValidity("Meu querido, colocar o nome usando números? Deixa isso pros joguinhos");
+    } else {
+        nameInput.setCustomValidity('');
+    }
+})
+
 const personData = [];
 
 function printOnConsole() {
@@ -10,6 +21,8 @@ function printOnConsole() {
         event.preventDefault();
         personData.push({name: nameInput.value, birth: birthInput.value});
         console.log(personData);
+        nameInput.value = '';
+        birthInput.value = '';
     });
 };
 
