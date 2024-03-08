@@ -1,3 +1,14 @@
+//This const is simply the first call of the stored data, if "personData" has a value in it, it'll be displayed, otherwise an empty array will be its value.
+const storedData = JSON.parse(localStorage.getItem('personData')) || [];
+
+//This function is pushing the input value of both, the name and the birthDate, into the storage data array.
+function updateLocalStorage() {
+  storedData.push({name: nameInput.value, birth: birthInput.value })
+
+  //And this one is updating the local storage, so we can save the data.
+  localStorage.setItem('personData', JSON.stringify(storedData));
+};
+
 const nameInput = document.querySelector(".js-name-field");
 const birthInput = document.querySelector(".js-birth-field");
 const saveButton = document.querySelector(".js-save-button");
@@ -19,16 +30,14 @@ nameInput.addEventListener("input", () => {
   }
 });
 
-const personData = [];
-
 function printOnConsole() {
   myForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    personData.push({ name: nameInput.value, birth: birthInput.value });
-    console.log(personData);
+    updateLocalStorage();
     nameInput.value = "";
     birthInput.value = "";
   });
+  console.log(storedData)
 }
 
 printOnConsole();
