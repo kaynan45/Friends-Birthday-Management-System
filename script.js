@@ -1,11 +1,35 @@
 //This const is simply the first call of the stored data, if "personData" has a value in it, it'll be displayed, otherwise an empty array will be its value.
 const storedData = JSON.parse(localStorage.getItem('personData')) || [];
 
-//This function is pushing the input value of both, the name and the birthDate, into the storage data array.
+const tableBody = document.querySelector('.data-table-body');
+
+  // Function to create a table row for a person's data
+  function createTableRow(person) {
+    const row = document.createElement('tr');
+    const nameCell = document.createElement('td');
+    const birthCell = document.createElement('td');
+
+    nameCell.textContent = person.name;
+    birthCell.textContent = person.birth;
+
+    row.appendChild(nameCell);
+    row.appendChild(birthCell);
+
+    return row;
+  };
+
+  storedData.forEach((person) => {
+    const tableRow = createTableRow(person);
+    tableBody.appendChild(tableRow);
+  });
+
+// Function to update and store data in local storage.
 function updateLocalStorage() {
+
+  // Push the current input values for name and birthDate into the stored data array.
   storedData.push({name: nameInput.value, birth: birthInput.value })
 
-  //And this one is updating the local storage, so we can save the data.
+  // Update local storage with the modified data array.
   localStorage.setItem('personData', JSON.stringify(storedData));
 };
 

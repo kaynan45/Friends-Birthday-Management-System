@@ -13,8 +13,8 @@
     <form class="form js-form">
         <label for="name">
             Name
-            <input class="form-field js-field js-name-field" id="name" maxlength="120" minlength="3" name="name" required type="text"
-                placeholder="Type your name">
+            <input class="form-field js-field js-name-field" id="name" maxlength="120" minlength="3" name="name"
+                required type="text" placeholder="Type your name">
         </label>
         <label for="birth-date">
             Birth-date
@@ -23,6 +23,18 @@
         <button type="submit" class="js-save-button">Save</button>
     </form>
     <div class="data-area"></div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Name:</th>
+                <th>Birth Date:</th>
+            </tr>
+        </thead>
+        <tbody class="data-table-body">
+            <!-- Table rows will be added dynamically here -->
+        </tbody>
+    </table>
 </body>
 <script src="script.js"></script>
 
