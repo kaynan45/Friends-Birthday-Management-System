@@ -11,12 +11,20 @@ function createTableRow(person) {
   const row = document.createElement("tr");
   const nameCell = document.createElement("td");
   const birthCell = document.createElement("td");
+  const editCell = document.createElement("td");
 
   nameCell.textContent = person.name;
   birthCell.textContent = person.birth;
 
+  const editButton = document.createElement("button");
+  editButton.textContent = "Edit";
+  editButton.addEventListener("click", () => handleEdit(person));
+
+  editCell.appendChild(editButton);
+
   row.appendChild(nameCell);
   row.appendChild(birthCell);
+  row.appendChild(editCell);
 
   tableBody.appendChild(row);
 
