@@ -3,6 +3,7 @@ const storedData = JSON.parse(localStorage.getItem("personData")) || [];
 
 const tableBody = document.querySelector(".data-table-body");
 
+//Call the function that shows the html on the page
 showOnHtml();
 
 // Function to create a table row for a person's data
@@ -22,6 +23,7 @@ function createTableRow(person) {
   return row;
 }
 
+//Shows the html, or the tables on the page by calling the function createTableRow(person), with the person parameter, that is nothing more than each data saved on the local storage.
 function showOnHtml() {
   storedData.forEach((person) => {
     createTableRow(person);
@@ -58,11 +60,17 @@ nameInput.addEventListener("input", () => {
   }
 });
 
+//CRUD [CREATE]
+//Nothing more than the create part of the CRUD, this function is responsible for both, update the local storage with the provided data in the inputs, and create a new table row
 function updateData() {
+  //Listen when a submit event happens in the form.
   myForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    //Updates the local storage by calling this function
     updateLocalStorage();
+    //Creates a const called name, that saves the nameInput and birthInput
     const person = { name: nameInput.value, birth: birthInput.value };
+    //Calls the createTableRow(person) function with the const person inside it
     createTableRow(person);
     nameInput.value = "";
     birthInput.value = "";
