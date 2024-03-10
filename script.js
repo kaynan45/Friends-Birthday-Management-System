@@ -1,37 +1,41 @@
 //This const is simply the first call of the stored data, if "personData" has a value in it, it'll be displayed, otherwise an empty array will be its value.
-const storedData = JSON.parse(localStorage.getItem('personData')) || [];
+const storedData = JSON.parse(localStorage.getItem("personData")) || [];
 
-const tableBody = document.querySelector('.data-table-body');
+const tableBody = document.querySelector(".data-table-body");
 
-  // Function to create a table row for a person's data
-  function createTableRow(person) {
-    const row = document.createElement('tr');
-    const nameCell = document.createElement('td');
-    const birthCell = document.createElement('td');
+showOnHtml();
 
-    nameCell.textContent = person.name;
-    birthCell.textContent = person.birth;
+// Function to create a table row for a person's data
+function createTableRow(person) {
+  const row = document.createElement("tr");
+  const nameCell = document.createElement("td");
+  const birthCell = document.createElement("td");
 
-    row.appendChild(nameCell);
-    row.appendChild(birthCell);
+  nameCell.textContent = person.name;
+  birthCell.textContent = person.birth;
 
-    return row;
-  };
+  row.appendChild(nameCell);
+  row.appendChild(birthCell);
 
+  tableBody.appendChild(row);
+
+  return row;
+}
+
+function showOnHtml() {
   storedData.forEach((person) => {
-    const tableRow = createTableRow(person);
-    tableBody.appendChild(tableRow);
+    createTableRow(person);
   });
+}
 
 // Function to update and store data in local storage.
 function updateLocalStorage() {
-
   // Push the current input values for name and birthDate into the stored data array.
-  storedData.push({name: nameInput.value, birth: birthInput.value })
+  storedData.push({ name: nameInput.value, birth: birthInput.value });
 
   // Update local storage with the modified data array.
-  localStorage.setItem('personData', JSON.stringify(storedData));
-};
+  localStorage.setItem("personData", JSON.stringify(storedData));
+}
 
 const nameInput = document.querySelector(".js-name-field");
 const birthInput = document.querySelector(".js-birth-field");
@@ -54,14 +58,16 @@ nameInput.addEventListener("input", () => {
   }
 });
 
-function printOnConsole() {
+function updateData() {
   myForm.addEventListener("submit", (event) => {
     event.preventDefault();
     updateLocalStorage();
+    const person = { name: nameInput.value, birth: birthInput.value };
+    createTableRow(person);
     nameInput.value = "";
     birthInput.value = "";
   });
-  console.log(storedData)
+  console.log(storedData);
 }
 
-printOnConsole();
+updateData();
