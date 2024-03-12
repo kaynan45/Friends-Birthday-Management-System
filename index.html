@@ -4,38 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7 days of code</title>
+    <title>CRUD Application</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>People registration</h1>
-    <form class="form js-form">
-        <label for="name">
-            Name
-            <input class="form-field js-field js-name-field" id="name" maxlength="120" minlength="3" name="name"
-                required type="text" placeholder="Type your name">
-        </label>
-        <label for="birth-date">
-            Birth-date
-            <input class="form-field js-field js-birth-field" id="birth-date" name="birth-date" required type="date">
-        </label>
-        <button type="submit" class="js-save-button">Save</button>
-    </form>
-    <div class="data-area"></div>
+    <h1>Client Management System</h1>
+    <button id="cadastrarCliente">Add Client</button>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="modalClose" class="close">&times;</span>
+            <h2>Client Details</h2>
+            <form id="form" class="form">
+                <label for="js-client-name">
+                    Name
+                    <input class="form-field js-field" id="js-client-name" maxlength="120" minlength="3" name="name"
+                        required type="text" placeholder="Type client's name">
+                </label>
+                <label for="js-client-email">
+                    Email
+                    <input class="form-field js-field" id="js-client-email" name="email" required type="email"
+                        placeholder="Type client's email">
+                </label>
+                <label for="js-client-phone">
+                    Phone
+                    <input class="form-field js-field" id="js-client-phone" name="phone" required type="tel"
+                        placeholder="Type client's phone">
+                </label>
+                <label for="js-client-city">
+                    City
+                    <input class="form-field js-field" id="js-client-city" name="city" required type="text"
+                        placeholder="Type client's city">
+                </label>
+                <button type="button" id="js-save-button">Save</button>
+            </form>
+        </div>
+    </div>
 
-    <table class="data-table">
+    <table id="js-clients-table" class="data-table">
         <thead>
             <tr>
-                <th>Name:</th>
-                <th>Birth Date:</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody class="data-table-body">
             <!-- Table rows will be added dynamically here -->
         </tbody>
     </table>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 
 </html>
