@@ -19,6 +19,7 @@ function createTableRow(person) {
   const editButton = document.createElement("button");
   editButton.textContent = "Edit";
   editButton.addEventListener("click", () => handleEdit(person));
+  editButton.classList.add(".js-edit-button");
 
   editCell.appendChild(editButton);
 
@@ -29,6 +30,15 @@ function createTableRow(person) {
   tableBody.appendChild(row);
 
   return row;
+}
+
+function handleEdit(person) {
+  // Populate form fields with person's data for editing
+  nameInput.value = person.name;
+  birthInput.value = person.birth;
+
+  // You might want to store the index of the edited person for updating later
+  // (You can store it in a variable or data attribute on a hidden field, for example)
 }
 
 //Shows the html, or the tables on the page by calling the function createTableRow(person), with the person parameter, that is nothing more than each data saved on the local storage.
@@ -74,14 +84,23 @@ function updateData() {
   //Listen when a submit event happens in the form.
   myForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    //Updates the local storage by calling this function
-    updateLocalStorage();
-    //Creates a const called name, that saves the nameInput and birthInput
-    const person = { name: nameInput.value, birth: birthInput.value };
-    //Calls the createTableRow(person) function with the const person inside it
-    createTableRow(person);
-    nameInput.value = "";
-    birthInput.value = "";
+    let isEditing = false;
+    const editButton = document.querySelector(".js-edit-button");
+    editButton.querySelectorAll.forEach((editButton) => {
+      editButton.addEventListener('click', () => {
+        console.log('hello there');
+      });
+    });
+
+    if (!isEditing) {
+      updateLocalStorage();
+
+      const person = { name: nameInput.value, birth: birthInput.value };
+
+      createTableRow(person);
+      nameInput.value = "";
+      birthInput.value = "";
+    }
   });
   console.log(storedData);
 }
