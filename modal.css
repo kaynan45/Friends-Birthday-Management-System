@@ -68,7 +68,7 @@
 }
 
 .modal-field {
-    width: calc(50% - 10px);
+    width: calc(100% - 10px);
     height: 40px;
     outline-style: none;
     border-style: none;
@@ -83,6 +83,7 @@
 }
 
 .modal-footer{
+    margin-top: 20px;
     background-color: inherit;
     text-align: right;
     padding: 0 20px;
@@ -115,6 +116,7 @@
     font-size: 1rem;
     cursor: pointer;
     transition: box-shadow .6s ease;
+    margin: 5px;
 }
 
 #js-add-friend {
