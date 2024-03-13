@@ -5,57 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Application</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="modal.css">
 </head>
 
 <body>
-    <h1>Client Management System</h1>
-    <button id="cadastrarCliente">Add Client</button>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span id="modalClose" class="close">&times;</span>
-            <h2>Client Details</h2>
-            <form id="form" class="form">
-                <label for="js-client-name">
-                    Name
-                    <input class="form-field js-field" id="js-client-name" maxlength="120" minlength="3" name="name"
-                        required type="text" placeholder="Type client's name">
-                </label>
-                <label for="js-client-email">
-                    Email
-                    <input class="form-field js-field" id="js-client-email" name="email" required type="email"
-                        placeholder="Type client's email">
-                </label>
-                <label for="js-client-phone">
-                    Phone
-                    <input class="form-field js-field" id="js-client-phone" name="phone" required type="tel"
-                        placeholder="Type client's phone">
-                </label>
-                <label for="js-client-city">
-                    City
-                    <input class="form-field js-field" id="js-client-city" name="city" required type="text"
-                        placeholder="Type client's city">
-                </label>
-                <button type="button" id="js-save-button">Save</button>
-            </form>
+    <header>
+        <h1>Friend's Birthday Management System</h1>
+    </header>
+    
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Kaynan</td>
+                    <td>27/02/2005</td>
+                </tr>
+                <tr>
+                    <td>Daniel</td>
+                    <td>27/11/2006</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Add Friend</h2>
+                    <button class="close-modal">X</button>
+                </header>
+                <form id="form" class="modal-form">
+                    <input type="text" required class="js-friend-name">
+                    <input type="text" required class="js-friend-age">
+                </form>
+                <footer>
+                    <button class="js-add-friend">Add</button>
+                    <button class="js-cancel-friend">Cancel</button>
+                </footer>
+            </div>
         </div>
-    </div>
 
-    <table id="js-clients-table" class="data-table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>City</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody class="data-table-body">
-            <!-- Table rows will be added dynamically here -->
-        </tbody>
-    </table>
-
+    </main>
     <script src="script.js"></script>
 </body>
 
