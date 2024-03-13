@@ -1,3 +1,5 @@
+updateTable();
+
 //MODAL [
 const addFriendButton = document.getElementById("insert-friends-button");
 const closeModal = document.querySelector(".close-modal");
@@ -5,6 +7,10 @@ const closeModal = document.querySelector(".close-modal");
 addFriendButton.addEventListener("click", () => {
   document.querySelector(".modal").classList.add("active");
 });
+
+function modalClose() {
+  document.querySelector(".modal").classList.remove("active");
+}
 
 closeModal.addEventListener("click", () => {
   document.querySelector(".modal").classList.remove("active");
@@ -16,42 +22,47 @@ const friendsList = document.getElementById("tbody");
 const nameInput = document.getElementById("js-friend-name");
 const birthdayInput = document.getElementById("js-friend-birthday");
 
-function createFriendRow(friend) {
+function createFriendRow(friends_db) {
   const newRow = document.createElement("tr");
   newRow.innerHTML = `
-        <td>${nameInput.value}</td>
-        <td>${birthdayInput.value}</td>
+        <td>${friends_db.name}</td>
+        <td>${friends_db.birthday}</td>
 `;
-  document.querySelector(".js-friends-table>tbody").appendChild(newRow);
+  document.querySelector("#js-friends-table>tbody").appendChild(newRow);
 }
 
 const isValidFields = () => {
   return document.getElementById("form").reportValidity();
+};
+
+function clearTable() {
+  const rows = document.querySelectorAll("#js-friends-table>tbody tr");
+  rows.forEach((row) => row.parentNode.removeChild(row));
 }
+
+function updateTable() {
+  const friends_db = readFriends();
+  clearTable();
+  friends_db.forEach(createFriendRow);
+}
+
+updateTable();
 
 const saveFriend = () => {
   if (isValidFields()) {
-    friends_db = readFriends();
+    const friends_db = readFriends();
     const newFriend = {
       name: nameInput.value,
       birthday: birthdayInput.value,
     };
-    friends_db.push(newFriend);
-    setItem(friends_db);
+    createFriend(newFriend);
     console.log(readFriends());
+    nameInput.value = "";
+    birthdayInput.value = "";
+    modalClose();
+    updateTable();
   }
 };
-
-document.querySelector("#form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  console.log("hello");
-  // const friend = {
-  //   name: nameInput.value,
-  //   birthday: birthdayInput.value,
-  // };
-  // createFriendRow(friend);
-  // createFriend(friend);
-});
 
 //LocalStorage functions
 function setItem(friend) {
