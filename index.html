@@ -17,22 +17,15 @@
 
     <main>
         <button class="button" id="insert-friends-button">Insert Friend</button>
-        <table class="records">
+        <table id="js-friends-table" class="records">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Birth</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Kaynan</td>
-                    <td>27/02/2005</td>
-                </tr>
-                <tr>
-                    <td>Daniel</td>
-                    <td>27/11/2006</td>
-                </tr>
+            <tbody id="tbody">
+               
             </tbody>
         </table>
         <div class="modal">
@@ -41,10 +34,10 @@
                     <h2>Add Friend</h2>
                     <button class="close-modal">X</button>
                 </header>
-                <form id="form" class="modal-form">
+                <form class="modal-form" id="form">
                     <input type="text" id="js-friend-name" class="modal-field" placeholder="Fried's Name"
                         required>
-                    <input type="date" id="js-friend-age" class="modal-field" placeholder="Fried's Birthday" required>
+                    <input type="date" id="js-friend-birthday" class="modal-field" placeholder="Fried's Birthday" required>
                 </form>
                 <footer class="modal-footer">
                     <button id="js-add-friend" class="button">Add</button>

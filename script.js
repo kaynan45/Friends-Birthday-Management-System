@@ -11,6 +11,48 @@ closeModal.addEventListener("click", () => {
 });
 //MODAL ]
 
+//Html synchronous
+const friendsList = document.getElementById("tbody");
+const nameInput = document.getElementById("js-friend-name");
+const birthdayInput = document.getElementById("js-friend-birthday");
+
+function createFriendRow(friend) {
+  const newRow = document.createElement("tr");
+  newRow.innerHTML = `
+        <td>${nameInput.value}</td>
+        <td>${birthdayInput.value}</td>
+`;
+  document.querySelector(".js-friends-table>tbody").appendChild(newRow);
+}
+
+const isValidFields = () => {
+  return document.getElementById("form").reportValidity();
+}
+
+const saveFriend = () => {
+  if (isValidFields()) {
+    friends_db = readFriends();
+    const newFriend = {
+      name: nameInput.value,
+      birthday: birthdayInput.value,
+    };
+    friends_db.push(newFriend);
+    setItem(friends_db);
+    console.log(readFriends());
+  }
+};
+
+document.querySelector("#form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log("hello");
+  // const friend = {
+  //   name: nameInput.value,
+  //   birthday: birthdayInput.value,
+  // };
+  // createFriendRow(friend);
+  // createFriend(friend);
+});
+
 //LocalStorage functions
 function setItem(friend) {
   localStorage.setItem("friends_db", JSON.stringify(friend));
@@ -52,3 +94,5 @@ function deleteFriend(index) {
   setItem(friends_db);
   console.log(readFriends());
 }
+
+document.getElementById("js-add-friend").addEventListener("click", saveFriend);
