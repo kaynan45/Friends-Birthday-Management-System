@@ -7,15 +7,17 @@
     <title>CRUD Application</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="records.css">
 </head>
 
 <body>
-    <header>
-        <h1>Friend's Birthday Management System</h1>
+    <header class="first-header">
+        <h1 class="header-title">Friend's Birthday Management System</h1>
     </header>
-    
+
     <main>
-        <table>
+        <button class="button" id="insert-friends-button">Insert Friend</button>
+        <table class="records">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -40,12 +42,12 @@
                     <button class="close-modal">X</button>
                 </header>
                 <form id="form" class="modal-form">
-                    <input type="text" required class="js-friend-name">
-                    <input type="text" required class="js-friend-age">
+                    <input type="text" required id="js-friend-name" class="modal-field" placeholder="Fried's Name">
+                    <input type="text" required id="js-friend-age" class="modal-field" placeholder="Fried's Birthday">
                 </form>
-                <footer>
-                    <button class="js-add-friend">Add</button>
-                    <button class="js-cancel-friend">Cancel</button>
+                <footer class="modal-footer">
+                    <button id="js-add-friend" class="button">Add</button>
+                    <button id="js-cancel-friend" class="button">Cancel</button>
                 </footer>
             </div>
         </div>
