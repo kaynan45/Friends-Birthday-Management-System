@@ -24,9 +24,15 @@ const birthdayInput = document.getElementById("js-friend-birthday");
 
 function createFriendRow(friends_db) {
   const newRow = document.createElement("tr");
+  const newThead = document.createElement("th");
   newRow.innerHTML = `
         <td>${friends_db.name}</td>
         <td>${friends_db.birthday}</td>
+        <td class="action-td">
+        <button class="button red">Delete</button>
+        <button class="button yellow">Edit</button>
+        </td>
+
 `;
   document.querySelector("#js-friends-table>tbody").appendChild(newRow);
 }
