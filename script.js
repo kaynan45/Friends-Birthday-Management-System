@@ -29,7 +29,7 @@ function createFriendRow(friends_db) {
         <td>${friends_db.name}</td>
         <td>${friends_db.birthday}</td>
         <td class="action-td">
-        <button class="button red">Delete</button>
+        <button id="delete-button" class="button red">Delete</button>
         <button class="button yellow">Edit</button>
         </td>
 
@@ -69,6 +69,19 @@ const saveFriend = () => {
     updateTable();
   }
 };
+
+document.querySelectorAll("#delete-button").forEach((deleteBtn, index) =>
+  deleteBtn.addEventListener("click", () => {
+    const friend_db = readFriends();
+    const response = confirm(
+      `Are you sure you want to delete ${friend_db[index].name}`
+    );
+    if (response) {
+      deleteFriend(index);
+      updateTable();
+    }
+  })
+);
 
 //LocalStorage functions
 function setItem(friend) {
