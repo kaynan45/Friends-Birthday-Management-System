@@ -4,8 +4,12 @@ updateTable();
 const addFriendButton = document.getElementById("insert-friends-button");
 const closeModal = document.querySelector(".close-modal");
 
-addFriendButton.addEventListener("click", () => {
+function openModal() {
   document.querySelector(".modal").classList.add("active");
+}
+
+addFriendButton.addEventListener("click", () => {
+  openModal();
 });
 
 function modalClose() {
@@ -30,7 +34,7 @@ function createFriendRow(friends_db) {
         <td>${friends_db.birthday}</td>
         <td class="action-td">
         <button id="delete-button" class="button red">Delete</button>
-        <button class="button yellow">Edit</button>
+        <button id="edit-button" class="button yellow">Edit</button>
         </td>
 
 `;
@@ -70,18 +74,38 @@ const saveFriend = () => {
   }
 };
 
-document.querySelectorAll("#delete-button").forEach((deleteBtn, index) =>
-  deleteBtn.addEventListener("click", () => {
-    const friend_db = readFriends();
-    const response = confirm(
-      `Are you sure you want to delete ${friend_db[index].name}`
-    );
-    if (response) {
+function fillFields(friends_db, index) {
+  nameInput.value = friends_db[index].name;
+  birthdayInput.value = friends_db[index].birthday;
+  openModal();
+}
+
+document.querySelectorAll("#edit-button").forEach((editBtn, index) => {
+  const friends_db = readFriends();
+  editBtn.addEventListener("click", () => {
+    fillFields(friends_db, index);
+  });
+});
+
+friendsList.addEventListener("click", (event) => {
+  const index = getIndexFromButton(event.target);
+  const friend_db = readFriends();
+  const response = confirm(
+    `Are you sure you want to delete ${friend_db[index].name}`
+  );
+  if (response) {
+    if (event.target && event.target.id === "delete-button") {
       deleteFriend(index);
       updateTable();
     }
-  })
-);
+  }
+});
+
+// Function to get the index of the friend to delete
+function getIndexFromButton(button) {
+  const row = button.closest("tr");
+  return Array.from(row.parentNode.children).indexOf(row);
+}
 
 //LocalStorage functions
 function setItem(friend) {
