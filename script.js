@@ -58,6 +58,8 @@ function updateTable() {
 
 updateTable();
 
+let editStatus = false;
+
 const saveFriend = () => {
   if (isValidFields()) {
     const friends_db = readFriends();
@@ -92,7 +94,10 @@ friendsList.addEventListener("click", (event) => {
       updateTable();
     }
   } if (event.target.id === "edit-button") {
-    fillFields(friend_db, index);
+    editStatus = true;
+    if (editStatus) {
+      fillFields(friend_db, index);
+    }
   }
 });
 
@@ -110,11 +115,6 @@ function setItem(friend) {
 function getItem() {
   return JSON.parse(localStorage.getItem("friends_db")) ?? [];
 }
-
-const tempFriend = {
-  name: "Bernard",
-  birthDay: "17/01/2007",
-};
 
 //[CREATE-CRUD]
 function createFriend(friend) {
