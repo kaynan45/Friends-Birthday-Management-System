@@ -80,24 +80,19 @@ function fillFields(friends_db, index) {
   openModal();
 }
 
-document.querySelectorAll("#edit-button").forEach((editBtn, index) => {
-  const friends_db = readFriends();
-  editBtn.addEventListener("click", () => {
-    fillFields(friends_db, index);
-  });
-});
-
 friendsList.addEventListener("click", (event) => {
   const index = getIndexFromButton(event.target);
   const friend_db = readFriends();
-  const response = confirm(
-    `Are you sure you want to delete ${friend_db[index].name}`
-  );
-  if (response) {
-    if (event.target && event.target.id === "delete-button") {
+  if (event.target.id === "delete-button") {
+    const response = confirm(
+      `Are you sure you want to delete ${friend_db[index].name}`
+    );
+    if (response) {
       deleteFriend(index);
       updateTable();
     }
+  } if (event.target.id === "edit-button") {
+    fillFields(friend_db, index);
   }
 });
 
