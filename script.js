@@ -19,6 +19,11 @@ function modalClose() {
 closeModal.addEventListener("click", () => {
   document.querySelector(".modal").classList.remove("active");
 });
+
+function clearFields() {
+  nameInput.value = "";
+  birthdayInput.value = "";
+}
 //MODAL ]
 
 //Html synchronous
@@ -70,8 +75,7 @@ const saveFriend = () => {
       };
       createFriend(newFriend);
       console.log(readFriends());
-      nameInput.value = "";
-      birthdayInput.value = "";
+      clearFields();
       modalClose();
       updateTable();
     }
@@ -79,6 +83,7 @@ const saveFriend = () => {
       editFriend(friends_db, friendIndexToEdit);
     }
   }
+  clearFields()
 };
 
 function fillFields(friends_db, index) {
