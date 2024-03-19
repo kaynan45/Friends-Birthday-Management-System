@@ -63,16 +63,21 @@ let editStatus = false;
 const saveFriend = () => {
   if (isValidFields()) {
     const friends_db = readFriends();
-    const newFriend = {
-      name: nameInput.value,
-      birthday: birthdayInput.value,
-    };
-    createFriend(newFriend);
-    console.log(readFriends());
-    nameInput.value = "";
-    birthdayInput.value = "";
-    modalClose();
-    updateTable();
+    if (!editStatus) {
+      const newFriend = {
+        name: nameInput.value,
+        birthday: birthdayInput.value,
+      };
+      createFriend(newFriend);
+      console.log(readFriends());
+      nameInput.value = "";
+      birthdayInput.value = "";
+      modalClose();
+      updateTable();
+    }
+    if (editStatus) {
+      editFriend(friends_db, friendIndexToEdit);
+    }
   }
 };
 
@@ -81,6 +86,16 @@ function fillFields(friends_db, index) {
   birthdayInput.value = friends_db[index].birthday;
   openModal();
 }
+
+function editFriend(friends_db, index) {
+  const updatedFriend = friends_db[index] = {
+    name: nameInput.value,
+    birthday: birthdayInput.value,
+  };
+  console.log(updatedFriend);
+}
+
+let friendIndexToEdit = null;
 
 friendsList.addEventListener("click", (event) => {
   const index = getIndexFromButton(event.target);
@@ -93,10 +108,12 @@ friendsList.addEventListener("click", (event) => {
       deleteFriend(index);
       updateTable();
     }
-  } if (event.target.id === "edit-button") {
+  }
+  if (event.target.id === "edit-button") {
     editStatus = true;
     if (editStatus) {
       fillFields(friend_db, index);
+      friendIndexToEdit = index;
     }
   }
 });
