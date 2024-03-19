@@ -14,10 +14,11 @@ addFriendButton.addEventListener("click", () => {
 
 function modalClose() {
   document.querySelector(".modal").classList.remove("active");
+  clearFields();
 }
 
 closeModal.addEventListener("click", () => {
-  document.querySelector(".modal").classList.remove("active");
+  modalClose();
 });
 
 function clearFields() {
@@ -81,6 +82,7 @@ const saveFriend = () => {
     }
     if (editStatus) {
       editFriend(friends_db, friendIndexToEdit);
+      editStatus = false;
     }
   }
   clearFields()
@@ -169,3 +171,5 @@ function deleteFriend(index) {
 }
 
 document.getElementById("js-add-friend").addEventListener("click", saveFriend);
+
+document.getElementById("js-cancel-friend").addEventListener('click', modalClose);
