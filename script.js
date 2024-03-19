@@ -88,11 +88,13 @@ function fillFields(friends_db, index) {
 }
 
 function editFriend(friends_db, index) {
-  const updatedFriend = friends_db[index] = {
+  const updatedFriend = (friends_db[index] = {
     name: nameInput.value,
     birthday: birthdayInput.value,
-  };
-  console.log(updatedFriend);
+  });
+  setItem(friends_db);
+  updateTable();
+  modalClose();
 }
 
 let friendIndexToEdit = null;
