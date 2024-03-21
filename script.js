@@ -76,7 +76,15 @@ updateTable();
 let editStatus = false; //✅
 
 const saveFriend = () => {
-  const nameValue = nameInput.value;
+  const nameValue = nameInput.value.trim();
+
+  const lettersRegex = /^[a-zA-Z]+$/;
+
+  if(!lettersRegex.test(nameValue)) {
+    alert("Name with numbers? Leave it to the games man...")
+    return;
+  }
+
   if (nameValue.length < 3) {
     alert("C'on man, who has a name with 2 letters or less?");
     return;
