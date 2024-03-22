@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="modal.css">
     <link rel="stylesheet" href="records.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -16,8 +17,10 @@
     </header>
 
     <main>
-        <button class="button" id="insert-friends-button">Insert Friend</button>
-        <table class="records"  id="js-friends-table">
+        <button class="button" id="insert-friends-button">
+            <i class="fas fa-user-plus"></i> Insert Friend
+        </button>
+        <table class="records" id="js-friends-table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -26,7 +29,7 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-               
+
             </tbody>
         </table>
         <div class="modal">
@@ -36,9 +39,9 @@
                     <button class="close-modal">X</button>
                 </header>
                 <form class="modal-form" id="form">
-                    <input type="text" id="js-friend-name" class="modal-field" placeholder="Fried's Name"
+                    <input type="text" id="js-friend-name" class="modal-field" placeholder="Fried's Name" required>
+                    <input type="date" id="js-friend-birthday" class="modal-field" placeholder="Fried's Birthday"
                         required>
-                    <input type="date" id="js-friend-birthday" class="modal-field" placeholder="Fried's Birthday" required>
                 </form>
                 <footer class="modal-footer">
                     <button id="js-add-friend" class="button">Add</button>

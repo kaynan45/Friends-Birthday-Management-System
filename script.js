@@ -47,8 +47,12 @@ function createFriendRow(friends_db) {
         <td>${friends_db.name}</td>
         <td>${friends_db.birthday}</td>
         <td class="action-td">
-        <button id="delete-button" class="button red">Delete</button>
-        <button id="edit-button" class="button yellow">Edit</button>
+        <button id="delete-button" class="button red">
+        <i class="fas fa-trash icon"></i>Delete
+        </button>
+        <button id="edit-button" class="button yellow">
+        <i class="fas fa-edit icon"></i>Edit
+        </button>
         </td>
 
 `;
