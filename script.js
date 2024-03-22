@@ -3,6 +3,7 @@ updateTable();
 //MODAL [
 const addFriendButton = document.getElementById("insert-friends-button");
 const closeModal = document.querySelector(".close-modal");
+const modalTittle = document.querySelector(".modal-tittle");
 
 function openModal() {
   //✅
@@ -18,6 +19,7 @@ function modalClose() {
   //✅
   document.querySelector(".modal").classList.remove("active");
   clearFields();
+  modalTittle.innerHTML = "Add Friend";
 }
 
 closeModal.addEventListener("click", () => {
@@ -76,16 +78,19 @@ updateTable();
 let editStatus = false; //✅
 
 const saveFriend = () => {
-  const nameValue = nameInput.value.trim();
+  //✅
+  const nameValue = nameInput.value.trim(); //✅
 
-  const lettersRegex = /^[a-zA-Z]+$/;
+  const lettersRegex = /^[a-zA-Z]+$/; //✅
 
-  if(!lettersRegex.test(nameValue)) {
-    alert("Name with numbers? Leave it to the games man...")
+  if (!lettersRegex.test(nameValue)) {
+    //✅
+    alert("Name with numbers? Leave it to the games man...");
     return;
   }
 
   if (nameValue.length < 3) {
+    //✅
     alert("C'on man, who has a name with 2 letters or less?");
     return;
   }
@@ -154,6 +159,7 @@ friendsList.addEventListener("click", (event) => {
     if (editStatus) {
       fillFields(friend_db, index);
       friendIndexToEdit = index;
+      modalTittle.innerHTML = "Editing Friend";
     }
   }
 });

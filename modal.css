@@ -11,6 +11,7 @@
     background: #00000090;
     opacity: 0;
     z-index: -1;
+    transition: opacity 0.3s ease;
 }
 
 .modal.active {
@@ -22,13 +23,20 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) translateY(-90px);
     background-color: white;
     width: 400px;
     height: 300px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: translate(-50%, -50%) translateY(0);
+    opacity: 1;
 }
 
 .modal-header {
@@ -129,4 +137,5 @@
 
 .button:hover{
     box-shadow: inset 200px 0 0 #00000055;
+    transform: scale(1.1);
 }
